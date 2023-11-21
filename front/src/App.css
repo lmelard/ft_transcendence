@@ -1,0 +1,23 @@
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+/* 
+@media (max-width: 1300px) {
+  .App {
+      display: flex;
+      flex-direction: column;
+  }
+} */
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container-fluid {
+  background-color: #FFFFFF; /* Votre couleur de fond personnalisée */
+}

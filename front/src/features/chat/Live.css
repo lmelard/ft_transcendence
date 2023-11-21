@@ -1,0 +1,84 @@
+.Live {
+    margin: 6px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.Messages {
+    height: 100%;    
+    max-height: 440px;
+    display: flex;
+    border-style: inset;
+    padding: 4px;
+    flex-direction: column;
+    font-size: small;
+    overflow-y: auto;
+    row-gap: 2px;
+}
+
+.SingleMessage {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+.SingleMessage__left {
+    padding-top: 5px;
+    width : 25px;
+}
+
+.SingleMessage__left {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.SingleMessage__author {
+    font-weight: bold;
+}
+
+.SingleMessage__date {
+    font-style: italic;
+    color: grey;
+    font-size: x-small;
+}
+
+.avatar_img {
+    width : 25px;
+    height : 25px;
+    border-radius: 50%;
+}
+
+.Live__icons{
+    text-align: right;
+}
+
+.Live__DM{
+    width : 24px;
+    height : 24px;
+}
+
+.Live__invitationForm{
+    background-color: white;
+    border-radius: 2px;
+}
+.Live__invitationDiv{
+    display: flex;
+    flex-direction: left;
+    width: 80px;
+    justify-content: space-between;
+}
+
+.Live__invitIcons {
+    width : 25px;
+    height : 25px;
+}
+
+.accept {
+    color: green;
+}
+
+.decline {
+    color: red;
+    transform: rotate(-45deg);
+}

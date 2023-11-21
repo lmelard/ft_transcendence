@@ -1,0 +1,25 @@
+/* Leaderboard.css */
+
+.Leaderboard {
+	width: 100%; /* Utilise la largeur complète du conteneur parent */
+	overflow-x: auto; /* Assure une défilement horizontal si le contenu est trop large */
+}
+  
+/* Responsive design: ajuste la taille des éléments en fonction de la largeur de l'écran */
+@media (max-width: 768px) {
+	.Leaderboard {
+		/* Ajoutez des styles spécifiques pour les petits écrans ici */
+	}
+}
+
+.avatar-gold {
+	border: 2px solid gold;
+}
+
+.avatar-silver {
+	border: 2px solid silver;
+}
+
+.avatar-bronze {
+	border: 2px solid #cd7f32; /* Couleur bronze */
+}

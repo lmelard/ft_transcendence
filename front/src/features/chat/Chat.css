@@ -1,0 +1,95 @@
+.Chat {
+    background: #fff; /* Light background */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    width: 100%;
+    min-width: 300px;
+    margin-top: 15px;
+    display: grid;
+    grid-template-rows: 65px 500px 239px;
+    overflow: auto;
+}
+
+.Chat__header {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #366873;
+    display: flex;
+    justify-content: space-between;
+    height: 56px;
+    min-height: 56px;
+    max-height: 56px;
+}
+  
+.Chat__header__title {
+  padding: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333; /* Slightly darker color for contrast */
+}
+  
+.Chat__header__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    align-self: center;
+}
+
+.Chat__main {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    justify-self: stretch;
+    align-self: stretch;
+}
+
+.Chat__channels {
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
+}
+
+.Chat__newChannelForm{
+    padding-bottom: 3px;
+}
+
+.ChannelsList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    overflow: auto;
+}
+
+.channelListItem__normal,
+.channelListItem__selected {
+    padding: 5px;
+    border-radius: 4px;
+    font-size: small;
+}
+
+.channelListItem__normal{
+    background-color: #c0d3e6;
+}
+
+.channelListItem__icon{
+    width: 16px;
+    height: 16px;
+}
+
+.channelListItem__selected{
+    background-color:#366873;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+
+.ChannelsList__icons{
+    width : 28px;
+    height : 28px;
+}
+
+ 
+.inputChat {
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box; 
+}

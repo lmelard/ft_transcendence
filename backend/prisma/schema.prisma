@@ -1,0 +1,209 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String        @id @default(uuid())
+  createAt        DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  online          Boolean       @default(false)
+  lastOffline     DateTime?
+  isPlaying       Boolean       @default(false)
+  email           String        @unique
+  nickname        String?       @unique
+  login42         Boolean       @default(false)
+  imageUrl        String?
+  hash            String?
+  fullName        String?       @unique
+  twoFAuthSecret  String?
+  is2FAuthEnabled Boolean?
+  is2FAPassed     Boolean       @default(false)
+  friends         User[]        @relation("FirendsUser")
+  friendsOf       User[]        @relation("FirendsUser")
+  memberOf        Channel[]     @relation("ChannelMembers")
+  adminOf         Channel[]     @relation("ChannelAdmins")
+  ownerOf         Channel[]     @relation("ChannelOwner")
+  playerOf        Game[]        @relation("GamePlayers")
+  ownergameOf     Game[]        @relation("GameOwner")
+  winnerOf        Game[]        @relation("GameWinner")
+  invitedIn       Channel[]     @relation("InvitedUsers")
+  mutedIn         Channel[]     @relation("MutedUsers")
+  bannedFrom      Channel[]     @relation("BannedUsers")
+  blocked         User[]        @relation("BlockedUser")
+  blockedBy       User[]        @relation("BlockedUser")
+  writtenMessages Msg[]         @relation("WrittenMessages")
+  userStats       UserStats?    @relation(fields: [userStatsId], references: [id])
+  userStatsId     Int?          @unique
+  expert          Boolean       @default(false)
+  firstCon        Boolean       @default(true)
+
+  @@map("users")
+}
+
+model Channel {
+  id              String        @id @default(uuid())
+  createAt        DateTime      @default(now())
+  name            String        @unique
+  type            ChannelType   @default(PUBLIC)
+  owner           User          @relation("ChannelOwner", fields: [ownerId], references: [id])
+  ownerId         String
+  admins          User[]        @relation("ChannelAdmins")
+  members         User[]        @relation("ChannelMembers")
+  invited         User[]        @relation("InvitedUsers")
+  muted           User[]        @relation("MutedUsers")
+  banned          User[]        @relation("BannedUsers")
+  hashedPwd       String?       // password for PROTECTED channel
+  messages        Msg[]         @relation("ChannelMessages")
+
+  @@map("channels")
+}
+
+model Game {
+  id              String        @id @default(uuid())
+  createAt        DateTime      @default(now())
+  name            String        @unique
+  type            String        @default("PUBLIC")
+  ownerId         String
+  owner           User?         @relation("GameOwner", fields: [ownerId], references: [id])
+  players         User[]        @relation("GamePlayers")
+  position        Int?
+  winnerId        String?
+  winner          User?         @relation("GameWinner", fields: [winnerId], references: [id])
+  full            Boolean       @default(false)
+  finished        Boolean       @default(false)
+  scoreR          Int           @default(0)
+  scoreL          Int           @default(0)
+  status          String        @default("PAUSE")
+  mode            GameMode      @default(CLASSIC)
+
+  @@map("games")
+}
+
+model UserStats {
+  id              Int           @id @default(autoincrement())
+  nbVictory       Int           @default(0)
+  User            User?         //chaque user possede sa propre table de stats
+}
+
+model Msg {
+  id              Int           @id @default(autoincrement())
+  createAt        DateTime      @default(now())
+  text            String        @default("")
+  author          User          @relation("WrittenMessages", fields: [authorId], references: [id])
+  authorId        String
+  channel         Channel       @relation("ChannelMessages", fields: [channelId], references: [id])
+  channelId       String
+
+  @@map("messages")
+}
+
+model FriendRequests {
+  id            Int           @id @default(autoincrement())
+  user1         String
+  user2         String
+
+  @@map("FriendRequestss")
+}
+
+enum ChannelType {
+  PUBLIC
+  PRIVATE
+  PROTECTED
+  DM
+}
+
+enum GameType {
+  LIVE
+  PAUSE
+  ENDED
+}
+
+enum GameMode {
+  CLASSIC
+  SPEED
+}
+
+// // ****************************************************************************
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id              String     @id @default(uuid())
+//   //id              Int        @id @default(autoincrement())
+//   createAt        DateTime   @default(now())
+//   isLogged        Boolean    @default(false)
+//   updatedAt       DateTime   @updatedAt
+//   email           String     @unique
+//   nickname        String?    @unique
+//   login42         String?    @unique
+//   hash            String?
+//   fullName        String?
+//   twoFAuthSecret  String?
+//   is2FAuthEnabled Boolean?
+//   writtenMessages Msg[]      @relation("WrittenMessages")
+//   channels        Channel[]  @relation("ChannelUsers")
+//   adminOf         Channel[]  @relation("ChannelAdmins")
+//   ownerOf         Channel[]  @relation("ChannelOwner")
+//   // currentChannel  Channel?   @relation("CurrentChannel", fields: [currentChannelId], references: [id])
+//   // currentChannelId String?
+//   userStats       UserStats? @relation(fields: [userStatsId], references: [id])
+//   userStatsId     Int?       @unique
+
+//   @@map("users")
+// }
+
+// model Channel {
+//   id       String  @id @default(uuid())
+//   // id       Int       @id @default(autoincrement())
+//   // createAt        DateTime   @default(now())
+//   name     String? @unique
+//   owner    User?   @relation("ChannelOwner", fields: [ownerId], references: [id])
+//   ownerId  String?
+//   admins   User[]  @relation("ChannelAdmins")
+//   isPublic Boolean @default(true)
+//   //muted   User[]
+//   //password//a developper - hash ?
+//   users  User[]  @relation("ChannelUsers")
+//   messages Msg[]   @relation("ChannelMessages")
+//   // usersOnChannel  User[]  @relation("CurrentChannel")
+//   // invitees User[]
+
+//   @@map("channels")
+// }
+
+// model UserStats {
+//   id        Int   @id @default(autoincrement())
+//   nbVictory Int   @default(0)
+//   User      User? //chaque user possede sa propre table de stats
+// }
+
+// model Msg {
+//   id        Int      @id @default(autoincrement())
+//   createAt  DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   name      String?
+//   text      String?
+//   author    User?    @relation("WrittenMessages", fields: [authorId], references: [id])
+//   authorId  String?
+//   Channel   Channel? @relation("ChannelMessages", fields: [channelId], references: [name])
+//   channelId String?
+
+//   @@map("messages")
+// }

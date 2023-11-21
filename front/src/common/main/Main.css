@@ -1,0 +1,24 @@
+.Main {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 450px;
+    grid-column-gap: 20px;/* index.css ou App.css */
+    
+      margin: 0;
+      padding: 0;
+      background-color: #FFFFFF; /* Votre couleur de fond personnalisée */
+      min-height: 93vh; 
+
+}
+
+@media (max-width: 1300px) {
+    .Main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding-top: 15px;
+        grid-column-gap: 20px;
+    }
+
+}

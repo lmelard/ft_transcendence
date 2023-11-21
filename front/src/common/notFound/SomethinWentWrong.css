@@ -1,0 +1,27 @@
+.error-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	text-align: center;
+  }
+  
+  .button-primary {
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 8px; /* equivalent to 2 in MUI's spacing system */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #0a3f9c; /* color similar to MUI's primary color */
+  }
+  
+  .button-primary:hover {
+	background-color: #0a3f9c; /* color similar to MUI's primary color */
+	color: white;
+  }
