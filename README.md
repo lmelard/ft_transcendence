@@ -14,7 +14,7 @@ ft_transcendence is a dynamic web platform where users engage in the classic Pon
 
 #### 📦 Deployment
 ---
-The application utilizes Docker and consists of three main services:
+The application uses Docker and consists of three main services:
 
 - ReactJS: Manages the frontend.
 - NestJS: Handles backend operations.
