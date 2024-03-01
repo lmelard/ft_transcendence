@@ -30,7 +30,7 @@ Launch the application with a single command: docker-compose up --build.
 - User Authentication: Via 42's API, with session management using cookies for secure and persistent login experiences.
 - Real-Time Interactions: Utilization of WebSockets for both the Pong game and chat system, enabling live and responsive user interactions.
 - Chat System: Offers real-time messaging, including private/public channels, administrative functionalities, and user blocking.
-- Pong Game: Includes both classic and power-up modes with a matchmaking system for player pairing.
+- Pong Game: Includes both classic and power-up modes with a matchmaking system for player pairing. It supports multiple users and is powered by Socket.IO, a popular library for real-time web applications, which ensures quick, responsive gameplay.
 - User Profiles: Showcases individual game history and player stats.
 - Password Security: Passwords are securely hashed using the Argon algorithm.
 - SQL Injection Protection: ORM (Prisma) provides robust protection against SQL injection vulnerabilities.
